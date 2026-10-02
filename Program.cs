@@ -11,6 +11,7 @@ namespace liste_2026_andrej
         static void Main(string[] args)
         {
             Console.WriteLine("Cao!");
+            Console.WriteLine("Drugi red");
             Console.ReadLine();
         }
     }
