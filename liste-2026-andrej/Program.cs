@@ -12,6 +12,7 @@ namespace liste_2026_andrej
         {
             int izbor = 1;
             graf Prvi = null;
+            graf_m Drugi = null;
             while (izbor != 0)
             {
                 Console.WriteLine("1. Unos ");
@@ -23,6 +24,7 @@ namespace liste_2026_andrej
                 Console.WriteLine("7. Usmeren ");
                 Console.WriteLine("8. Povezan ");
                 Console.WriteLine("9. Belman Ford ");
+                Console.WriteLine("10. Dijkstra ");
                 Console.WriteLine("0. Kraj ");
                 izbor = Convert.ToInt32(Console.ReadLine());
                 switch (izbor)
@@ -42,25 +44,43 @@ namespace liste_2026_andrej
                         Prvi.Ucitaj();
                         break;
                     case 5:
-                        graf_m Drugi = graf_m.LM(Prvi);
+                        Drugi = graf_m.LM(Prvi);
+                        break;
+                    case 6:
+                        if (Drugi != null)
+                        {
+                            Prvi = graf_m.ML(Drugi);
+                            Console.WriteLine("Graf je konvertovan iz matrice nazad u listu");
+                            Prvi.Ispis();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Prvo morate izvrsiti konverziju L->M (opcija 5)");
+                        }
                         break;
                     case 7:
-                        if (graf_m.usmeren(Prvi)) Console.WriteLine("Nije usmeren ");
-                        else Console.WriteLine("Jeste usmeren");
-                        break;
-                    case 8:
-                        int KP = Prvi.povezan();
-                        Console.WriteLine(KP);
-                        break;
-                    case 9:
-                        Console.WriteLine("Unesite pocetni cvor");
-                        int Poc = Convert.ToInt32(Console.ReadLine());
-                        string rez = Prvi.BF(Poc);
-                        Console.WriteLine(rez);
-                        break;
-                    default:
-                        break;
-                }
+                            if (graf_m.usmeren(Prvi)) Console.WriteLine("Nije usmeren ");
+                            else Console.WriteLine("Jeste usmeren");
+                            break;
+                        case 8:
+                            int KP = Prvi.povezan();
+                            Console.WriteLine(KP);
+                            break;
+                        case 9:
+                            Console.WriteLine("Unesite pocetni cvor");
+                            int Poc = Convert.ToInt32(Console.ReadLine());
+                            string rez = Prvi.BF(Poc);
+                            Console.WriteLine(rez);
+                            break;
+                        default:
+                            break;
+                        case 10:
+                            Console.WriteLine("Unesite pocetni cvor");
+                            int PocD = Convert.ToInt32(Console.ReadLine());
+                            string rezD = Prvi.Dijkstra(PocD);
+                            Console.WriteLine(rezD);
+                            break;
+                        }
             }
         }
     }

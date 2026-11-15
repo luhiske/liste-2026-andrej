@@ -29,6 +29,31 @@ namespace liste_2026_andrej
             }
             return novi;
         }
+        public static graf ML(graf_m stari)
+        {
+            graf novi = new graf();
+            novi.Cvor = new string[stari.Cvor.Length];
+            for (int i = 0; i < stari.Cvor.Length; i++)
+            {
+                novi.Cvor[i] = stari.Cvor[i];
+            }
+            novi.grane = new List<grana>[stari.Cvor.Length];
+            for (int i = 0; i < stari.Cvor.Length; i++)
+            {
+                novi.grane[i] = new List<grana>();
+                for (int j = 0; j < stari.Cvor.Length; j++)
+                {
+                    if (stari.matrica[i, j].HasValue)
+                    {
+                        grana novaGrana = new grana();
+                        novaGrana.cvor = j;
+                        novaGrana.tezina = stari.matrica[i, j].Value;
+                        novi.grane[i].Add(novaGrana);
+                    }
+                }
+            }
+            return novi;
+        }
         public static bool usmeren(graf ulaz)
         {
             bool rez = true;

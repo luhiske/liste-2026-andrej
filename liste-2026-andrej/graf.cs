@@ -176,5 +176,48 @@ namespace liste_2026_andrej
             }
             return rez;
         }
+
+        public string Dijkstra(int poc)
+        {
+            string rez = "";
+            int[] T = new int[Cvor.Length];
+            int[] P = new int[Cvor.Length];
+            for (int i = 0; i < Cvor.Length; i++)
+            {
+                T[i] = 99;
+                P[i] = 0;
+            }
+            T[poc] = 0;
+            while (true)
+            {
+                int i = -1;
+                int min = 99;
+                for (int j = 0; j < Cvor.Length; j++)
+                {
+                    if (P[j] == 0 && T[j] < min)
+                    {
+                        min = T[j];
+                        i = j;
+                    }
+                }
+                if (i == -1 || T[i] == 99) break;
+                P[i] = 1;
+                foreach (grana k in grane[i])
+                {
+                    if (P[k.cvor] == 0)
+                    {
+                        if (k.tezina + T[i] < T[k.cvor])
+                        {
+                            T[k.cvor] = k.tezina + T[i];
+                        }
+                    }
+                }
+            }
+            for (int i = 0; i < Cvor.Length; i++)
+            {
+                rez += $"Cvor {i} {Cvor[i]} Tezina {T[i]}\n";
+            }
+            return rez;
+        }
     }
 }
